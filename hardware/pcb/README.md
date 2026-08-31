@@ -1,6 +1,6 @@
 # PCB Schematics
 
-Electronic schematics and PCB designs for the Sesame Robot Project. There are two versions of the Sesame Distro Board available: V3 (current), V2 (legacy), and V1 (legacy).
+Electronic schematics and PCB designs for the Sesame Robot Project. There are two versions of the Sesame Distro Board available: V3.1 (current), V2 (legacy), and V1 (legacy).
 
 > [!NOTE]
 > **For Sesame Build Kits:** All Sesame Build Kits include a pre-flashed Sesame Distro Board V3 (or earlier V2), so you don't need to order or assemble a board separately.
@@ -10,9 +10,9 @@ Electronic schematics and PCB designs for the Sesame Robot Project. There are tw
 
 ---
 
-## Sesame Distro Board V3 (Current)
+## Sesame Distro Board V3.1 (Current)
 
-The **Sesame Distro Board V3** is the latest version and features:
+The **Sesame Distro Board V3.1** is the latest version and features:
 
 - **ESP32-S3 Processor**
 - **USB-C PD 12V** (requires high quality PD charger cable)
@@ -21,22 +21,49 @@ The **Sesame Distro Board V3** is the latest version and features:
 - Limited stock of pre-assembled units: [Full Contact Engineering](https://fullcontactengineering.com/products/sesame-distro-board-v3-pcb)
   *Note: Due to time constraints, the USB-C PD 12V negotiation chip is slightly untested, so a high quality PD cable is necessary.*
 
-### V3 Board Details and Schematics:
+### V3 Initial Release Issues and V3.1 Fixes
 
-<img src="distro-v3/assets/close-v3.png" alt="Sesame Distro Board V3 Close-up" width="70%">
+When the initial V3 Distro boards were released, users experienced significant connectivity and power issues, including constant disconnections, firmware flashing failures, and crashes when servos were plugged in. These problems were traced to two main design flaws:
 
-<img src="distro-v3/assets/Schematic_Sesame-Distro-Board-V3_2026-05-30.png" alt="Schematic_Sesame-Distro-Board-V3" width="70%">
+1.  **USB Signal Interference:** The Power Delivery (PD) chip was directly connected to the USB data lines. This caused interference with the ESP32-S3 data lines when plugged into a standard PC USB port, leading to continuous disconnects and reconnects.
 
-<img src="distro-v3/assets/layout-v3.png" alt="Sesame Distro Board V3 Layout" width="70%">
+2.  **Reversed Battery Polarity:** The battery connector footprint on the board layout was designed incorrectly, with the positive (+) and negative (-) terminals flipped. Consequently, the battery could not properly power the board, forcing reliance on the computer's USB port. Standard USB ports could not supply enough power to drive the servos, resulting in brownouts and crashes whenever a servo was connected.
+
+For users with the original V3 board, a temporary fix involved manually cutting two traces to isolate the PD chip and desoldering/flipping the battery connector.
+
+**Fixed in Distro Board V3.1:** All of these issues have been fully resolved in Distro Board V3.1. The updated design corrects the trace routing and battery connector polarity, ensuring new boards function as intended without requiring manual modifications.
+
+### How to Fix Your V3 PCB
+
+If you have an original V3 board, you can manually fix it by following these steps:
+
+1.  **Cut the USB Data Line Traces:** Using a sharp hobby knife or snips, carefully cut the two traces or pins connecting the PD chip to the USB data lines. The location of these traces is highlighted in the image below.
+
+2.  **Flip the Battery Connector:** Desolder the battery connector, rotate it 180 degrees, and solder it back onto the board. This will correct the polarity.
+
+**After you cut the traces, you must put the board in download mode!** Enable download mode by holding down the BOOT button, keeping it held, then plugging the board into your computer. Keep holding the boot button for two seconds, then release the boot button. This will place the board in download mode.
+
+It will continue to boot loop if you do not put it into download mode!
+
+<img src="distro-v3.1/assets/pcbv3-fix.png" alt="V3 PCB Fix Guide" width="30%">
+(click the image to enlarge)
+
+### V3.1 Board Details and Schematics:
+
+<img src="distro-v3.1/assets/pcb-v3.1-close.png" alt="Sesame Distro Board V3.1 Close-up" width="50%">
+
+<img src="distro-v3.1/assets/Schematic_Sesame-Distro-Board-V3.1.png" alt="Schematic_Sesame-Distro-Board-V3.1" width="50%">
+
+<img src="distro-v3.1/assets/pcb-v3.1.png" alt="Sesame Distro Board V3.1 Layout" width="50%">
 
 ### V3 Files Available
 
-All files are located in the [`distro-v3/`](distro-v3/) directory:
+All files are located in the [`distro-v3.1/`](distro-v3.1/) directory:
 
-- **Schematic source:** `SCH_Sesame-Distro-Board-V3.json` - EasyEDA source design file for the V3 schematic
-- **Gerber file:** `Gerber_Sesame-Distro-Board-V3_PCB.zip` - For PCB fabrication
-- **BOM file:** `BOM_Sesame-Distro-Board-V3.csv` - Bill of materials for SMD components
-- **Pick-and-Place file:** `PickAndPlace_PCB_Sesame-Distro-Board-V3.csv` - Component placement data for assembly
+- **Schematic source:** `SCH_Sesame-Distro-Board-V3.1.json` - EasyEDA source design file for the V3.1 schematic
+- **Gerber file:** `Gerber_Sesame-Distro-Board-V3.1.zip` - For PCB fabrication
+- **BOM file:** `BOM_Sesame-Distro-Board-V3.1.csv` - Bill of materials for SMD components
+- **Pick-and-Place file:** `PickAndPlace_PCB_Sesame-Distro-Board-V3.1.csv` - Component placement data for assembly
 
 ## Sesame Distro Board V2 (Legacy)
 
@@ -116,15 +143,15 @@ Depending on stock availability, you can buy fully populated, pre-flashed boards
 
 **Option 2: PCBway Assembly Service**
 
-1. Go to [PCBway&#39;s Shared Project Page](https://www.pcbway.com/project/shareproject/Sesame_Distro_Board_V3_377de6fe.html)
+1. Go to [PCBway's Shared Project Page for V3.1](https://www.pcbway.com/project/shareproject/Sesame_Distro_Board_V3.1_link_goes_here.html) (Awaiting V3.1 specific link)
 2. Add to cart to order the boards fully assembled!
 
 **Option 3: Manual PCBway Assembly Service Upload**
 
-1. Go to [PCBway&#39;s PCB Assembly service](https://www.pcbway.com/pcb-assembly.html)
-2. Upload the Gerber file: `distro-v3/Gerber_Sesame-Distro-Board-V3_PCB.zip`
-3. Upload the BOM file: `distro-v3/BOM_Sesame-Distro-Board-V3.csv`
-4. Upload the Pick-and-Place file: `distro-v3/PickAndPlace_PCB_Sesame-Distro-Board-V3.csv`
+1. Go to [PCBway's PCB Assembly service](https://www.pcbway.com/pcb-assembly.html)
+2. Upload the Gerber file: `distro-v3.1/Gerber_Sesame-Distro-Board-V3.1.zip`
+3. Upload the BOM file: `distro-v3.1/BOM_Sesame-Distro-Board-V3.1.csv`
+4. Upload the Pick-and-Place file: `distro-v3.1/PickAndPlace_PCB_Sesame-Distro-Board-V3.1.csv`
 5. Confirm board specifications and component availability
 
 ### Ordering V2 Boards (Deprecated)

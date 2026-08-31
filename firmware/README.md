@@ -1,4 +1,4 @@
-# esame Robot Firmware
+# Sesame Robot Firmware
 
 This document provides technical information on the firmware architecture, control logic, and hardware abstraction layers used in the Sesame Robot.
 
@@ -192,6 +192,17 @@ By default, the robot creates its own WiFi network:
 - **IP Address**: `192.168.4.1`
 
 Connect to this network and navigate to any website to access the captive portal control interface. If you're having trouble connecting, try changing the password to something custom in the code's `#define AP_PASS` section.
+
+### Set WiFi from the Web Interface (no re-flash)
+
+You can join the robot to your network at runtime, without editing the code:
+
+1. Connect to the `Sesame-Controller-BETA` access point and open the captive portal.
+2. Go to **Settings → WiFi / Network**, tap **Scan for Networks**, and pick your **2.4GHz** network (or tick *Enter name manually* for a hidden SSID).
+3. Enter the password and tap **Connect**. The connection runs in the background and the page polls for the result (takes ~15s). Your phone may briefly drop off the robot's network while the robot switches WiFi channel — it reconnects automatically and the page recovers.
+4. On success the panel shows the link to `http://sesame-robot.local` and the assigned IP.
+
+> Credentials set this way are **not persisted** (the firmware sets `WiFi.persistent(false)`, so they are not written to flash) — after a reboot the robot returns to access-point mode and you re-enter them. (The compile-time method below survives reboots.)
 
 ### Network Mode (Optional)
 

@@ -56,8 +56,8 @@ Every part required to assemble Sesame is cataloged here. Pick the wiring strate
 
 | Item | Qty | Notes | Source |
 | --- | --- | --- | --- |
-| Bambu Lab 14500 7.4V 800mAh Li-ion Battery | 1 | Recommended wireless pack; cheap, effective, designed to fit inside the new internal frame. | [Bambu Lab](https://us.store.bambulab.com/products/14500-7-4v-800mah-li-ion-battery-1pcs) |
-| Bambu Lab 7.4V Lithium battery charger | 1 | Matching charger for the 14500 battery with XH2.54 connector. | [Bambu Lab](https://us.store.bambulab.com/products/7-4v-lithium-battery-charger-with-xh2-54-connector-1pcs?id=593290727051776002) |
+| Bambu Lab 14500 7.4V 800mAh Li-ion Battery | 1 | Recommended wireless pack; cheap, effective, designed to fit inside the new internal frame. | [Bambu Lab](https://tidd.ly/4x4Ec9b) |
+| Bambu Lab 7.4V Lithium battery charger | 1 | Matching charger for the 14500 battery with XH2.54 connector. | [Bambu Lab](https://tidd.ly/3SojOl0) |
 | XH2.54 female pigtail | 1 | Interface battery to switch/PCB without cutting stock leads (V3 requires soldering). | [Amazon](https://www.amazon.com/s?k=xh2.54+pigtail+cable) |
 
 ## Fasteners & Mechanical Hardware
